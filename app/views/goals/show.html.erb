@@ -1,0 +1,52 @@
+<!-- Responsive panel example-->
+
+<div class="row">
+  <div class="col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Goal #<%= @goal.id %></h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-12">
+            <dl class="dl-horizontal">
+              <dt>Recurringday</dt>
+              <dd><%= @goal.recurringday %></dd>
+
+              <dt>Recurring</dt>
+              <dd><%= @goal.recurring %></dd>
+
+              <dt>Stretch</dt>
+              <dd><%= @goal.stretch %></dd>
+
+              <dt>Goaloneliner</dt>
+              <dd><%= @goal.goaloneliner %></dd>
+
+              <dt>Complete</dt>
+              <dd><%= @goal.complete %></dd>
+
+              <dt>Duedate</dt>
+              <dd><%= @goal.duedate %></dd>
+
+            </dl>
+            <div class="btn-group btn-group-justified">
+              <a href="/goals" class="btn btn-primary">
+                <i class="fa fa-chevron-left"></i>
+              </a>
+
+              <a href="/goals/<%= @goal.id %>/edit" class="btn btn-warning">
+                <i class="fa fa-edit"></i>
+              </a>
+
+              <a href="/delete_goal/<%= @goal.id %>" class="btn btn-danger" rel="nofollow">
+                <i class="fa fa-trash-o"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- End responsive panel example -->

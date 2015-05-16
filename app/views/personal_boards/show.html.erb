@@ -1,0 +1,52 @@
+<!-- Responsive panel example-->
+
+<div class="row">
+  <div class="col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Personal Board #<%= @personal_board.id %></h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-12">
+            <dl class="dl-horizontal">
+              <dt>Boardmember5</dt>
+              <dd><%= @personal_board.boardmember5 %></dd>
+
+              <dt>Boardmember4</dt>
+              <dd><%= @personal_board.boardmember4 %></dd>
+
+              <dt>Boardmember3</dt>
+              <dd><%= @personal_board.boardmember3 %></dd>
+
+              <dt>Boardmember2</dt>
+              <dd><%= @personal_board.boardmember2 %></dd>
+
+              <dt>Boardmember1</dt>
+              <dd><%= @personal_board.boardmember1 %></dd>
+
+              <dt>User</dt>
+              <dd><%= @personal_board.user %></dd>
+
+            </dl>
+            <div class="btn-group btn-group-justified">
+              <a href="/personal_boards" class="btn btn-primary">
+                <i class="fa fa-chevron-left"></i>
+              </a>
+
+              <a href="/personal_boards/<%= @personal_board.id %>/edit" class="btn btn-warning">
+                <i class="fa fa-edit"></i>
+              </a>
+
+              <a href="/delete_personal_board/<%= @personal_board.id %>" class="btn btn-danger" rel="nofollow">
+                <i class="fa fa-trash-o"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- End responsive panel example -->

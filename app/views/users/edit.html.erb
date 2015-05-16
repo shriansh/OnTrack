@@ -1,0 +1,113 @@
+<!-- Validation failure messages -->
+
+<% if @user.errors.any? %>
+  <% @user.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<!-- Responsive panel example -->
+
+<div class="row">
+  <div class="col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Edit User #<%= @user.id %></h3>
+      </div>
+      <div class="panel-body">
+        <form action="/update_user/<%= @user.id %>" method="post" class="form-horizontal">
+          <!-- Hidden input for authenticity token to protect from forgery -->
+          <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+          <!-- Label and input for graduation_year -->
+          <div class="form-group">
+            <label for="graduation_year" class="col-sm-2 control-label">
+              Graduation year
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="graduation_year" name="graduation_year" placeholder="Graduation year" class="form-control" value="<%= @user.graduation_year %>">
+            </div>
+          </div>
+
+          <!-- Label and input for school -->
+          <div class="form-group">
+            <label for="school" class="col-sm-2 control-label">
+              School
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="school" name="school" placeholder="School" class="form-control" value="<%= @user.school %>">
+            </div>
+          </div>
+
+          <!-- Label and input for useractive -->
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <div class="checkbox">
+                <label for="useractive">
+                  <input type="checkbox" id="useractive" name="useractive" value="1" <%= "checked" if @user.useractive %>>
+                  Useractive
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Label and input for profile_picture -->
+          <div class="form-group">
+            <label for="profile_picture" class="col-sm-2 control-label">
+              Profile picture
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="profile_picture" name="profile_picture" placeholder="Profile picture" class="form-control" value="<%= @user.profile_picture %>">
+            </div>
+          </div>
+
+          <!-- Label and input for password -->
+          <div class="form-group">
+            <label for="password" class="col-sm-2 control-label">
+              Password
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="password" name="password" placeholder="Password" class="form-control" value="<%= @user.password %>">
+            </div>
+          </div>
+
+          <!-- Label and input for email_address -->
+          <div class="form-group">
+            <label for="email_address" class="col-sm-2 control-label">
+              Email address
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="email_address" name="email_address" placeholder="Email address" class="form-control" value="<%= @user.email_address %>">
+            </div>
+          </div>
+
+          <!-- Label and input for username -->
+          <div class="form-group">
+            <label for="username" class="col-sm-2 control-label">
+              Username
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="username" name="username" placeholder="Username" class="form-control" value="<%= @user.username %>">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button class="btn btn-warning">
+                Update User
+              </button>
+              or
+              <a href="/users/<%= @user.id %>">Cancel</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- End responsive panel example -->

@@ -1,0 +1,101 @@
+<!-- Validation failure messages -->
+
+<% if @personal_board.errors.any? %>
+  <% @personal_board.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<!-- Responsive panel example -->
+
+<div class="row">
+  <div class="col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Edit Personal Board #<%= @personal_board.id %></h3>
+      </div>
+      <div class="panel-body">
+        <form action="/update_personal_board/<%= @personal_board.id %>" method="post" class="form-horizontal">
+          <!-- Hidden input for authenticity token to protect from forgery -->
+          <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+          <!-- Label and input for boardmember5 -->
+          <div class="form-group">
+            <label for="boardmember5" class="col-sm-2 control-label">
+              Boardmember5
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="boardmember5" name="boardmember5" placeholder="Boardmember5" class="form-control" value="<%= @personal_board.boardmember5 %>">
+            </div>
+          </div>
+
+          <!-- Label and input for boardmember4 -->
+          <div class="form-group">
+            <label for="boardmember4" class="col-sm-2 control-label">
+              Boardmember4
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="boardmember4" name="boardmember4" placeholder="Boardmember4" class="form-control" value="<%= @personal_board.boardmember4 %>">
+            </div>
+          </div>
+
+          <!-- Label and input for boardmember3 -->
+          <div class="form-group">
+            <label for="boardmember3" class="col-sm-2 control-label">
+              Boardmember3
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="boardmember3" name="boardmember3" placeholder="Boardmember3" class="form-control" value="<%= @personal_board.boardmember3 %>">
+            </div>
+          </div>
+
+          <!-- Label and input for boardmember2 -->
+          <div class="form-group">
+            <label for="boardmember2" class="col-sm-2 control-label">
+              Boardmember2
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="boardmember2" name="boardmember2" placeholder="Boardmember2" class="form-control" value="<%= @personal_board.boardmember2 %>">
+            </div>
+          </div>
+
+          <!-- Label and input for boardmember1 -->
+          <div class="form-group">
+            <label for="boardmember1" class="col-sm-2 control-label">
+              Boardmember1
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="boardmember1" name="boardmember1" placeholder="Boardmember1" class="form-control" value="<%= @personal_board.boardmember1 %>">
+            </div>
+          </div>
+
+          <!-- Label and input for user -->
+          <div class="form-group">
+            <label for="user" class="col-sm-2 control-label">
+              User
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="user" name="user" placeholder="User" class="form-control" value="<%= @personal_board.user %>">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button class="btn btn-warning">
+                Update Personal Board
+              </button>
+              or
+              <a href="/personal_boards/<%= @personal_board.id %>">Cancel</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- End responsive panel example -->
