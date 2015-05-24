@@ -22,51 +22,21 @@
           <!-- Hidden input for authenticity token to protect from forgery -->
           <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
-          <!-- Label and input for recurringday -->
-          <div class="form-group">
-            <label for="recurringday" class="col-sm-2 control-label">
-              Recurringday
-            </label>
-            <div class="col-sm-10">
-              <input type="text" id="recurringday" name="recurringday" placeholder="Recurringday" class="form-control" value="<%= @goal.recurringday %>">
-            </div>
-          </div>
 
-          <!-- Label and input for recurring -->
-          <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-              <div class="checkbox">
-                <label for="recurring">
-                  <input type="checkbox" id="recurring" name="recurring" value="1" <%= "checked" if @goal.recurring %>>
-                  Recurring
-                </label>
-              </div>
-            </div>
-          </div>
 
-          <!-- Label and input for stretch -->
-          <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-              <div class="checkbox">
-                <label for="stretch">
-                  <input type="checkbox" id="stretch" name="stretch" value="1" <%= "checked" if @goal.stretch %>>
-                  Stretch
-                </label>
-              </div>
-            </div>
-          </div>
+
 
           <!-- Label and input for goaloneliner -->
           <div class="form-group">
             <label for="goaloneliner" class="col-sm-2 control-label">
-              Goaloneliner
+              Goal
             </label>
             <div class="col-sm-10">
-              <input type="text" id="goaloneliner" name="goaloneliner" placeholder="Goaloneliner" class="form-control" value="<%= @goal.goaloneliner %>">
+              <input type="text" id="goaloneliner" name="goaloneliner" placeholder="Insert Goal Here" class="form-control" value="<%= @goal.goaloneliner %>">
             </div>
           </div>
-
-          <!-- Label and input for complete -->
+<!--
+          <!-- Label and input for complete
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
               <div class="checkbox">
@@ -77,7 +47,7 @@
               </div>
             </div>
           </div>
-
+ -->
 
 
           <!-- Label and input for duedate -->
@@ -93,7 +63,39 @@
                 <button type="button" class="btn btn-default">Day After</button>
               </div> -->
 
-              <input type="date" id="duedate" name="duedate" placeholder="Duedate" class="form-control" value="<%= @goal.duedate %>">
+<!--               <input type="date" id="duedate" name="duedate" placeholder="Duedate" class="form-control" value="<%= @goal.duedate %>">
+ -->
+
+<div class="form-group">
+<div class="radio">
+  <label>
+    <input type="radio" name="radioDueDate" id="duedate" value="<%= @goal.duedate=Date.today.to_s(:db) %>" checked>
+    Today
+  </label>
+</div>
+<div class="radio">
+  <label>
+    <input type="radio" name="radioDueDate" id="duedate" value="<%= Date.tomorrow %>">
+    Tomorrow
+  </label>
+</div>
+</div>
+
+<!-- Label and input for stretch -->
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <div class="checkbox">
+                <label for="stretch">
+                  <input type="checkbox" id="stretch" name="stretch" value="1" <%= "checked" if @goal.stretch %>>
+                  Check if this is a stretch goal
+                </label>
+              </div>
+            </div>
+          </div>
+
+
+
+
             </div>
           </div>
 

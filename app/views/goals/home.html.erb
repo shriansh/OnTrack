@@ -21,15 +21,15 @@
         <li class="list-group-item">
 
            <div class="btn-group" align="right">
-          <a href="/goals/<%= goal.id %>" class="btn btn-primary">
+          <a href="/goals/<%= goal.id %>" class="btn btn-xs btn-primary">
             <i class="fa fa-search-plus fa-fw"></i>
           </a>
 
-          <a href="/goals/<%= goal.id %>/edit" class="btn btn-warning">
+          <a href="/goals/<%= goal.id %>/edit" class="btn btn-xs btn-warning">
             <i class="fa fa-edit"></i>
           </a>
 
-          <a href="/delete_goal/<%= goal.id %>" class="btn btn-danger" rel="nofollow">
+          <a href="/delete_goal/<%= goal.id %>" class="btn btn-xs btn-danger" rel="nofollow">
             <i class="fa fa-trash-o"></i>
           </a>
 
@@ -50,13 +50,30 @@
           <% @goals.each do |goal| %>
 
 
-          <li class="list-group-item"><%= goal.goaloneliner %></li>
+    <li class="list-group-item">
+<h4>
+           <div class="btn-group" align="right">
+          <a href="/goals/<%= goal.id %>" class="btn btn-xs btn-primary">
+            <i class="fa fa-search-plus fa-fw"></i>
+          </a>
 
+          <a href="/goals/<%= goal.id %>/edit" class="btn btn-xs btn-warning">
+            <i class="fa fa-edit"></i>
+          </a>
+
+          <a href="/delete_goal/<%= goal.id %>" class="btn btn-xs btn-danger" rel="nofollow">
+            <i class="fa fa-trash-o"></i>
+          </a>
+
+        </div>
+      <%= goal.goaloneliner %>
+        </li>
+        </h4>
 
 
 
           <% end %>
-
+   <li class="list-group-item"><h4> <a href="/goals/new" class="btn btn-success">Add a new goal</a> </li>
 
         </div>
       </div>
