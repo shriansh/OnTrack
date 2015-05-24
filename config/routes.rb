@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   post "/create_goal", :controller => "goals", :action => "create"
 
   # READ
+  get "/", :controller => "goals", :action => "home"
   get "/goals", :controller => "goals", :action => "index"
   get "/goals/:id", :controller => "goals", :action => "show"
 

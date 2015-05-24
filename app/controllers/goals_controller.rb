@@ -3,6 +3,11 @@ class GoalsController < ApplicationController
     @goals = Goal.all
   end
 
+  def home
+    @goals = Goal.all
+  end
+
+
   def show
     @goal = Goal.find(params[:id])
   end
