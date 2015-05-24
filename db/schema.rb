@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150516174408) do
+ActiveRecord::Schema.define(version: 20150524025936) do
 
   create_table "goals", force: :cascade do |t|
     t.string   "recurringday"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20150516174408) do
     t.date     "duedate"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "personal_boards", force: :cascade do |t|
