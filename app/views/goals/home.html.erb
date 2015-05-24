@@ -53,7 +53,7 @@
           <% end %>
 
           <% if goal.duedate!=Date.today and goal.complete!=true  %>
-          <h4> <font color="red"> <%=  goal.goaloneliner %></font></h4>
+          <font color="red"> <%=  goal.goaloneliner %></font>
           <% else %>
             <%=  goal.goaloneliner %>
           <% end %>

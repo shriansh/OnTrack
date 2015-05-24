@@ -1,12 +1,12 @@
 <!-- Validation failure messages -->
 
 <% if @goal.errors.any? %>
-  <% @goal.errors.full_messages.each do |message| %>
-    <div class="alert alert-dismissable alert-danger">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <%= message %>
-    </div>
-  <% end %>
+<% @goal.errors.full_messages.each do |message| %>
+<div class="alert alert-dismissable alert-danger">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <%= message %>
+</div>
+<% end %>
 <% end %>
 
 <!-- Responsive panel example -->
@@ -47,16 +47,16 @@
               </div>
             </div>
           </div>
- -->
+        -->
 
 
-          <!-- Label and input for duedate -->
-          <div class="form-group">
-            <label for="duedate" class="col-sm-2 control-label">
-              Duedate
-            </label>
+        <!-- Label and input for duedate -->
+        <div class="form-group">
+          <label for="duedate" class="col-sm-2 control-label">
+            Duedate
+          </label>
 
-            <div class="col-sm-10">
+          <div class="col-sm-10">
              <!--  <div class="btn-group" role="group" aria-label="...">
                 <button type="button" class="btn btn-default" class="form-control" id="duedate" name="duedate" value="<%= @goal.duedate %>">Today</button>
                 <button type="button" class="btn btn-default">Tomorrow</button>
@@ -64,54 +64,54 @@
               </div> -->
 
 <!--               <input type="date" id="duedate" name="duedate" placeholder="Duedate" class="form-control" value="<%= @goal.duedate %>">
- -->
+-->
 
 <div class="form-group">
-<div class="radio">
-  <label>
-    <input type="radio" name="radioDueDate" id="duedate" value="<%= @goal.duedate=Date.today.to_s(:db) %>" checked>
-    Today
-  </label>
-</div>
-<div class="radio">
-  <label>
-    <input type="radio" name="radioDueDate" id="duedate" value="<%= Date.tomorrow %>">
-    Tomorrow
-  </label>
-</div>
+  <div class="radio">
+    <label>
+    <input type="radio" name="duedate" id="duedate" value="<%= Date.today.to_s(:db) %>" checked>
+      Today
+    </label>
+  </div>
+  <div class="radio">
+    <label>
+      <input type="radio" name="duedate" id="duedate" value="<%= Date.tomorrow %>">
+      Tomorrow
+    </label>
+  </div>
 </div>
 
 <!-- Label and input for stretch -->
-          <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-              <div class="checkbox">
-                <label for="stretch">
-                  <input type="checkbox" id="stretch" name="stretch" value="1" <%= "checked" if @goal.stretch %>>
-                  Check if this is a stretch goal
-                </label>
-              </div>
-            </div>
-          </div>
-
-
-
-
-            </div>
-          </div>
-
-          <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-              <button class="btn btn-success">
-                Create Goal
-              </button>
-              or
-              <a href="/goals">Cancel</a>
-            </div>
-          </div>
-        </form>
-      </div>
+<div class="form-group">
+  <div class="col-sm-offset-2 col-sm-10">
+    <div class="checkbox">
+      <label for="stretch">
+        <input type="checkbox" id="stretch" name="stretch" value="1" <%= "checked" if @goal.stretch %>>
+        Check if this is a stretch goal
+      </label>
     </div>
   </div>
+</div>
+
+
+
+
+</div>
+</div>
+
+<div class="form-group">
+  <div class="col-sm-offset-2 col-sm-10">
+    <button class="btn btn-success">
+      Create Goal
+    </button>
+    or
+    <a href="/goals">Cancel</a>
+  </div>
+</div>
+</form>
+</div>
+</div>
+</div>
 </div>
 
 <!-- End responsive panel example -->
