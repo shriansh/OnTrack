@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   # UPDATE
   get "/goals/:id/edit", :controller => "goals", :action => "edit"
   post "/update_goal/:id", :controller => "goals", :action => "update"
+  get "/complete_goal/:id", :controller => "goals", :action => "complete"
 
   # DELETE
   get "/delete_goal/:id", :controller => "goals", :action => "destroy"

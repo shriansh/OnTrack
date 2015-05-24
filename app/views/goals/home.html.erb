@@ -7,6 +7,7 @@
       <div class="page-header">
         <h1>
           Welcome <%= @goals.first.user.username %>
+          <a href="/goals/new" class="btn btn-success">Add a new goal</a>
         </h1>
       </div>
     </div>
@@ -16,11 +17,69 @@
         <div class="panel-heading">Today's goals</div>
 
 
-        <% @goals.each do |goal| %>
-<h4>
-        <li class="list-group-item">
+        <% @todays_and_past_goals.each do |goal| %>
+        <h4>
+          <li class="list-group-item">
 
            <div class="btn-group" align="right">
+            <a href="/goals/<%= goal.id %>" class="btn btn-xs btn-primary">
+              <i class="fa fa-search-plus fa-fw"></i>
+            </a>
+
+            <a href="/goals/<%= goal.id %>/edit" class="btn btn-xs btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+
+            <a href="/delete_goal/<%= goal.id %>" class="btn btn-xs btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+
+
+
+          </div>
+
+          <% if goal.complete==true %>
+          <s><%= goal.goaloneliner %></s>
+          <% end %>
+
+          <% if goal.complete!=true %>
+          <a href="/complete_goal/<%= goal.id %>" class="btn btn-xs btn-success" rel="nofollow">
+            Mark Completed</i>
+          </a>
+
+
+          <% if goal.stretch==true  %>
+          (stretch)
+          <% end %>
+
+          <% if goal.duedate!=Date.today and goal.complete!=true  %>
+          <h4> <font color="red"> <%=  goal.goaloneliner %></font></h4>
+          <% else %>
+            <%=  goal.goaloneliner %>
+          <% end %>
+
+        </li>
+      </h4>
+      <% end %>
+      <% end %>
+
+    </div>
+  </div>
+
+
+
+
+  <div class="col-sm-5">
+    <div class="panel panel-success">
+      <div class="panel-heading">Tomorrow's goals</div>
+
+
+      <% @tomorrows_goals.each do |goal| %>
+
+
+      <li class="list-group-item">
+        <h4>
+         <div class="btn-group" align="right">
           <a href="/goals/<%= goal.id %>" class="btn btn-xs btn-primary">
             <i class="fa fa-search-plus fa-fw"></i>
           </a>
@@ -34,72 +93,40 @@
           </a>
 
         </div>
-      <%= goal.goaloneliner %>
-        </li>
-        </h4>
-          <% end %>
-
-
-        </div>
-      </div>
-      <div class="col-sm-5">
-        <div class="panel panel-success">
-          <div class="panel-heading">Tomorrow's goals</div>
-
-
-          <% @goals.each do |goal| %>
-
-
-    <li class="list-group-item">
-<h4>
-           <div class="btn-group" align="right">
-          <a href="/goals/<%= goal.id %>" class="btn btn-xs btn-primary">
-            <i class="fa fa-search-plus fa-fw"></i>
-          </a>
-
-          <a href="/goals/<%= goal.id %>/edit" class="btn btn-xs btn-warning">
-            <i class="fa fa-edit"></i>
-          </a>
-
-          <a href="/delete_goal/<%= goal.id %>" class="btn btn-xs btn-danger" rel="nofollow">
-            <i class="fa fa-trash-o"></i>
-          </a>
-
-        </div>
-      <%= goal.goaloneliner %>
-        </li>
-        </h4>
+        <%= goal.goaloneliner %>
+      </li>
+    </h4>
 
 
 
-          <% end %>
-   <li class="list-group-item"><h4> <a href="/goals/new" class="btn btn-success">Add a new goal</a> </li>
+    <% end %>
 
-        </div>
-      </div>
-      <div class="col-sm-1"></div>
+
+  </div>
+</div>
+<div class="col-sm-1"></div>
 
 </div>
 
-      <div class="row">
-       <div class="col-sm-1"></div>
-       <div class="col-sm-10">
+<div class="row">
+ <div class="col-sm-1"></div>
+ <div class="col-sm-10">
 
-        <h2>Notes for tonight's summary email</h2>
+  <h2>Notes for tonight's summary email</h2>
 
-        <form>
-          <textarea style="width:100%">
+  <form>
+    <textarea style="width:100%">
 
-          </textarea>
+    </textarea>
 
-        </form>
-        <button type="submit" class="btn btn-primary">Save</button>
+  </form>
+  <button type="submit" class="btn btn-primary">Save</button>
 
-      </div>
+</div>
 
-      <div class="col-sm-1"></div>
-    </div>
-  </div>
+<div class="col-sm-1"></div>
+</div>
+</div>
 
 
 </div>
