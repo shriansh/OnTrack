@@ -3,6 +3,11 @@ class PersonalBoardsController < ApplicationController
     @personal_boards = PersonalBoard.all
   end
 
+  def my_board
+    @my_board = PersonalBoard.where(user:"shriansh").first
+    @my_board_array = PersonalBoard.where(user: "shriansh").first.members
+  end
+
   def show
     @personal_board = PersonalBoard.find(params[:id])
   end

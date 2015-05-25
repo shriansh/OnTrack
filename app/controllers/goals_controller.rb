@@ -4,6 +4,7 @@ class GoalsController < ApplicationController
   end
 
   def home
+    @new_goal = Goal.new
     @goals = Goal.all
     @todays_goals = Goal.where(duedate: Date.today.to_s(:db))
     @tomorrows_goals = Goal.where(duedate: Date.tomorrow.to_s(:db))
@@ -29,11 +30,27 @@ class GoalsController < ApplicationController
     @goal.duedate = params[:duedate]
 
     if @goal.save
-      redirect_to "/goals", :notice => "Goal created successfully."
+      redirect_to "/", :notice => "Goal created successfully."
     else
       render 'new'
     end
   end
+
+
+  def quick_add
+    @goal = Goal.new
+    @goal.stretch = false
+    @goal.goaloneliner = params[:goaloneliner]
+    @goal.complete = false
+    @goal.duedate = Date.tomorrow.to_s(:db)
+
+    if @goal.save
+      redirect_to "/", :notice => "Goal created successfully."
+    else
+      render 'home', :notice => "something went wrong."
+    end
+  end
+
 
   def edit
     @goal = Goal.find(params[:id])
@@ -76,6 +93,6 @@ def complete
 
     @goal.destroy
 
-    redirect_to "/goals", :notice => "Goal deleted."
+    redirect_to "/", :notice => "Goal deleted."
   end
 end

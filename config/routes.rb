@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   # CREATE
   get "/goals/new", :controller => "goals", :action => "new"
   post "/create_goal", :controller => "goals", :action => "create"
+  post "/quick_add_goal", :controller => "goals", :action => "quick_add"
 
   # READ
   get "/", :controller => "goals", :action => "home"
@@ -18,6 +19,11 @@ Rails.application.routes.draw do
   get "/delete_goal/:id", :controller => "goals", :action => "destroy"
   #------------------------------
 
+
+
+
+
+
   # Routes for the Personal_board resource:
   # CREATE
   get "/personal_boards/new", :controller => "personal_boards", :action => "new"
@@ -25,6 +31,7 @@ Rails.application.routes.draw do
 
   # READ
   get "/personal_boards", :controller => "personal_boards", :action => "index"
+  get "/my_board", :controller => "personal_boards", :action => "my_board"
   get "/personal_boards/:id", :controller => "personal_boards", :action => "show"
 
   # UPDATE
@@ -34,6 +41,8 @@ Rails.application.routes.draw do
   # DELETE
   get "/delete_personal_board/:id", :controller => "personal_boards", :action => "destroy"
   #------------------------------
+
+
 
   # Routes for the User resource:
   # CREATE

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Personal Board</title>
+</head>
+
+
+<body>
+
+
+  <div class="container">
+
+
+   <div class="row">
+    <div class="col-sm-12">
+      <div class="page-header">
+        <h1>
+          Welcome <%= @my_board.user %>. This is your personal board
+        </h1>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+
+
+  <div class="col-sm-5">
+    <div class="panel panel-success">
+      <div class="panel-heading">Members</div>
+
+
+
+      <ul class="list-group">
+        <% @my_board_array.each do |member| %>
+        <li class="list-group-item"><%= member.to_s %></li>
+<% end %>
+      </ul>
+
+
+
+
+
+    </body>
+    </html>
