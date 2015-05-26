@@ -5,6 +5,8 @@ class GoalsController < ApplicationController
 
   def home
     @new_goal = Goal.new
+    @new_note =DailyNote.new
+    @notes = DailyNote.all
     @goals = Goal.all
     @todays_goals = Goal.where(duedate: Date.today.to_s(:db))
     @tomorrows_goals = Goal.where(duedate: Date.tomorrow.to_s(:db))

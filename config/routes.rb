@@ -1,4 +1,26 @@
 Rails.application.routes.draw do
+  # Routes for the Daily_note resource:
+  # CREATE
+  get "/daily_notes/new", :controller => "daily_notes", :action => "new"
+  post "/create_daily_note", :controller => "daily_notes", :action => "create"
+  post "/add_note", :controller => "daily_notes", :action => "add"
+
+  # READ
+  get "/daily_notes", :controller => "daily_notes", :action => "index"
+  get "/daily_notes/:id", :controller => "daily_notes", :action => "show"
+
+  # UPDATE
+  get "/daily_notes/:id/edit", :controller => "daily_notes", :action => "edit"
+  post "/update_daily_note/:id", :controller => "daily_notes", :action => "update"
+
+  # DELETE
+  get "/delete_daily_note/:id", :controller => "daily_notes", :action => "destroy"
+  #------------------------------
+
+
+
+
+
   # Routes for the Goal resource:
   # CREATE
   get "/goals/new", :controller => "goals", :action => "new"
