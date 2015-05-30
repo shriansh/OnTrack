@@ -30,6 +30,8 @@ class GoalsController < ApplicationController
     @goal.goaloneliner = params[:goaloneliner]
     @goal.complete = params[:complete]
     @goal.duedate = params[:duedate]
+    @goal.user_id = 1
+    #change above to goal user id
 
     if @goal.save
       redirect_to "/", :notice => "Goal created successfully."

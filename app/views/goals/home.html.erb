@@ -33,7 +33,7 @@
 
               <!-- Label and input for goaloneliner -->
 
-              <input type="text" id="goaloneliner" name="goaloneliner" placeholder="Quick-add goal for tomorrow" class="form-control" value="<%= @new_goal.goaloneliner %>">
+              <input type="text" id="goaloneliner" name="goaloneliner" placeholder="Quick-add goal for tomorrow. Hit Enter to submit." class="form-control" value="<%= @new_goal.goaloneliner %>">
 
 
             </form></div>
@@ -76,6 +76,8 @@
                   </a>
                 </div>
 
+<!--
+need to add below: If goal was not modified today or yesterday, then show. or something -->
 
                 <% if goal.complete==true %>
                 <a href="" class="btn btn-xs btn-default" rel="nofollow">
