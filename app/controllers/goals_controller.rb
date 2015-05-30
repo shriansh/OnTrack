@@ -1,4 +1,18 @@
 class GoalsController < ApplicationController
+
+
+before_action :auth_check, :only => [:destroy, :update, :edit, :show]
+
+def auth_check
+  @goal = Goal.find(params[:id])
+
+ if @goal.user_id != current_user.id
+    redirect_to root_url, :alert => "unauthorised"
+  end
+
+end
+
+
   def index
     @goals = Goal.all
   end
@@ -7,11 +21,21 @@ class GoalsController < ApplicationController
     @new_goal = Goal.new
     @new_note =DailyNote.new
     @notes = DailyNote.all
-    @goals = Goal.all
-    @todays_goals = Goal.where(duedate: Date.today.to_s(:db))
-    @tomorrows_goals = Goal.where(duedate: Date.tomorrow.to_s(:db))
-    @todays_and_past_goals = Goal.where.not(duedate: Date.tomorrow.to_s(:db))
+    @goals = current_user.goals
+
+    @todays_goals = @goals.where(duedate: Date.today.to_s(:db))
+    @tomorrows_goals = @goals.where(duedate: Date.tomorrow.to_s(:db))
+    @todays_and_past_goals = @goals.where.not(duedate: Date.tomorrow.to_s(:db))
+
+    if @goals == nil
+      render 'new_home'
+    else
+      render 'home'
+    end
+
   end
+
+
 
 
   def show
@@ -30,7 +54,7 @@ class GoalsController < ApplicationController
     @goal.goaloneliner = params[:goaloneliner]
     @goal.complete = params[:complete]
     @goal.duedate = params[:duedate]
-    @goal.user_id = 1
+    @goal.user_id = current_user.id
     #change above to goal user id
 
     if @goal.save

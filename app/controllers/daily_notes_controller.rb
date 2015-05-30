@@ -1,4 +1,22 @@
 class DailyNotesController < ApplicationController
+
+
+before_action :auth_check, :only => [:destroy, :update, :edit, :show]
+
+def auth_check
+  @daily_note = DailyNote.find(params[:id])
+
+ if @daily_note.user_id != current_user.id
+    redirect_to root_url, :alert => "unauthorised"
+  end
+
+end
+
+
+
+
+
+
   def index
     @daily_notes = DailyNote.all
   end
@@ -14,7 +32,7 @@ class DailyNotesController < ApplicationController
   def create
     @daily_note = DailyNote.new
     @daily_note.note = params[:note]
-    @daily_note.user_id = params[:user_id]
+    @daily_note.user_id = current_user.id
 
     if @daily_note.save
       redirect_to "/daily_notes", :notice => "Daily note created successfully."
@@ -22,6 +40,8 @@ class DailyNotesController < ApplicationController
       render 'new'
     end
   end
+
+
 
   def add
 
