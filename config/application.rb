@@ -6,7 +6,7 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-config.paths['app/views'] << "app/views/devise"
+#config.paths['app/views'] << "app/views/devise"
 
 
 module OnTrack
