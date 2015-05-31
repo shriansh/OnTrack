@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150530022053) do
+ActiveRecord::Schema.define(version: 20150531003944) do
 
   create_table "daily_notes", force: :cascade do |t|
     t.string   "note"
@@ -41,6 +41,12 @@ ActiveRecord::Schema.define(version: 20150530022053) do
     t.string   "user"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "boardmember1_id"
+    t.integer  "boardmember2_id"
+    t.integer  "boardmember3_id"
+    t.integer  "boardmember4_id"
+    t.integer  "boardmember5_id"
   end
 
   create_table "users", force: :cascade do |t|

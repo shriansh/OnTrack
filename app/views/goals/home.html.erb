@@ -10,7 +10,7 @@
         <div class="col-sm-12">
           <div class="page-header">
             <h1>
-              Welcome <%= current_user.email %>
+              Welcome <%= current_user.username %>
               <a href="/goals/new" class="btn btn-success">Add a new goal</a>
             </h1>
           </div>
@@ -77,120 +77,128 @@
                 </div>
 
 <!--
-need to add below: If goal was not modified today or yesterday, then show. or something -->
+  need to add below: If goal was not modified today or yesterday, then show. or something -->
 
-                <% if goal.complete==true %>
-                <a href="" class="btn btn-xs btn-default" rel="nofollow">
-                  Mark Completed</a>
-                  <font color="green"><s><%= goal.goaloneliner %></s></font>
-                  <% end %>
-
-                  <% if goal.complete!=true %>
-                  <a href="/complete_goal/<%= goal.id %>" class="btn btn-xs btn-success" rel="nofollow">
-                    Mark Completed
-                  </a>
-
-
-                  <% if goal.stretch==true  %>
-                  (stretch)
-                  <% end %>
-
-                  <% if goal.duedate!=Date.today and goal.complete!=true  %>
-                  <font color="red"> <%=  goal.goaloneliner %></font>
-                  <% else %>
-                  <%=  goal.goaloneliner %>
-                  <% end %>
-
-                </li>
-
-                <% end %>
-              </h4>
-              <% end %>
-            </ul>
-          </div>
-        </div>
+  <% if goal.complete==true %>
 
 
 
 
 
-        <div class="col-sm-5">
-          <div class="panel panel-success">
-            <div class="panel-heading">Tomorrow's goals</div>
+    <a href="" class="btn btn-xs btn-default" rel="nofollow">
+    Mark Completed</a>
+    <font color="green"><s><%= goal.goaloneliner %></s></font>
 
-
-            <% @tomorrows_goals.each do |goal| %>
-
-
-            <li class="list-group-item">
-              <h4>
-               <div class="btn-group" align="right">
-                <a href="/goals/<%= goal.id %>" class="btn btn-xs btn-primary">
-                  <i class="fa fa-search-plus fa-fw"></i>
-                </a>
-
-                <a href="/goals/<%= goal.id %>/edit" class="btn btn-xs btn-warning">
-                  <i class="fa fa-edit"></i>
-                </a>
-
-                <a href="/delete_goal/<%= goal.id %>" class="btn btn-xs btn-danger" rel="nofollow">
-                  <i class="fa fa-trash-o"></i>
-                </a>
-
-              </div>
-              <%= goal.goaloneliner %>
-            </li>
-          </h4>
+    <% end %>
 
 
 
-          <% end %>
+    <% if goal.complete!=true %>
+    <a href="/complete_goal/<%= goal.id %>" class="btn btn-xs btn-success" rel="nofollow">
+      Mark Completed
+    </a>
 
 
-        </div>
+    <% if goal.stretch==true  %>
+    (stretch)
+    <% end %>
+
+    <% if goal.duedate!=Date.today and goal.complete!=true  %>
+    <font color="red"> <%=  goal.goaloneliner %></font>
+    <% else %>
+    <%=  goal.goaloneliner %>
+    <% end %>
+
+  </li>
+
+  <% end %>
+</h4>
+<% end %>
+</ul>
+</div>
+</div>
+
+
+
+
+
+<div class="col-sm-5">
+  <div class="panel panel-success">
+    <div class="panel-heading">Tomorrow's goals</div>
+
+
+    <% @tomorrows_goals.each do |goal| %>
+
+
+    <li class="list-group-item">
+      <h4>
+       <div class="btn-group" align="right">
+        <a href="/goals/<%= goal.id %>" class="btn btn-xs btn-primary">
+          <i class="fa fa-search-plus fa-fw"></i>
+        </a>
+
+        <a href="/goals/<%= goal.id %>/edit" class="btn btn-xs btn-warning">
+          <i class="fa fa-edit"></i>
+        </a>
+
+        <a href="/delete_goal/<%= goal.id %>" class="btn btn-xs btn-danger" rel="nofollow">
+          <i class="fa fa-trash-o"></i>
+        </a>
+
       </div>
-      <div class="col-sm-1"></div></div>
-
-    </div>
-
-
+      <%= goal.goaloneliner %>
+    </li>
+  </h4>
 
 
 
+  <% end %>
 
 
+</div>
+</div>
+<div class="col-sm-1"></div></div>
 
-
-    <div class="row">
-     <div class="col-sm-1"></div>
-     <div class="col-sm-10">
-
-      <h2>Notes for tonight's summary email</h2>
-
-      <form action="/add_note" method="post" name="add_note">
-
-        <!-- Hidden input for authenticity token to protect from forgery -->
-        <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
-        <textarea style="width:100%" id="note" name="note" placeholder="Add a note for today here" value="@new_note.note">
-
-
-
-        </textarea>
-        <button type="submit" class="btn btn-primary">Save</button>
-
-      </form>
-
-    </div>
-
-    <div class="col-sm-1">
-
-    </div>
-  </div>
+</div>
 
 
 
 
-  <div class="row">
+
+
+
+
+
+<div class="row">
+ <div class="col-sm-1"></div>
+ <div class="col-sm-10">
+
+  <h2>Notes for tonight's summary email</h2>
+
+  <form action="/add_note" method="post" name="add_note">
+
+    <!-- Hidden input for authenticity token to protect from forgery -->
+    <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+    <textarea style="width:100%" id="note" name="note" placeholder="Add a note for today here" value="@new_note.note">
+
+
+
+    </textarea>
+    <button type="submit" class="btn btn-primary">Save</button>
+
+  </form>
+
+</div>
+
+<div class="col-sm-1">
+
+</div>
+</div>
+
+
+
+
+<div class="row">
   <div class="col-sm-1"></div>
   <div class="col-sm-10">
 
@@ -198,32 +206,32 @@ need to add below: If goal was not modified today or yesterday, then show. or so
    <h3>Today's notes</h3>
 
 
-    <% @notes.each do |note| %>
+   <% @notes.each do |note| %>
 
 
-    <li class="list-group-item">
-      <h4>
-       <div class="btn-group" align="right">
-        <a href="/daily_notes/<%= note.id %>" class="btn btn-xs btn-primary">
-          <i class="fa fa-search-plus fa-fw"></i>
-        </a>
+   <li class="list-group-item">
+    <h4>
+     <div class="btn-group" align="right">
+      <a href="/daily_notes/<%= note.id %>" class="btn btn-xs btn-primary">
+        <i class="fa fa-search-plus fa-fw"></i>
+      </a>
 
-        <a href="/daily_notes/<%= note.id %>/edit" class="btn btn-xs btn-warning">
-          <i class="fa fa-edit"></i>
-        </a>
+      <a href="/daily_notes/<%= note.id %>/edit" class="btn btn-xs btn-warning">
+        <i class="fa fa-edit"></i>
+      </a>
 
-        <a href="/delete_daily_note/<%= note.id %>" class="btn btn-xs btn-danger" rel="nofollow">
-          <i class="fa fa-trash-o"></i>
-        </a>
+      <a href="/delete_daily_note/<%= note.id %>" class="btn btn-xs btn-danger" rel="nofollow">
+        <i class="fa fa-trash-o"></i>
+      </a>
 
-      </div>
-      <%= note.note %>
-    </li>
-  </h4>
+    </div>
+    <%= note.note %>
+  </li>
+</h4>
 
 
 
-  <% end %>
+<% end %>
 
 
 </div>

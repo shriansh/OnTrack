@@ -47,7 +47,7 @@ end
 
     @daily_note = DailyNote.new
     @daily_note.note = params[:note]
-    @daily_note.user_id = 1
+    @daily_note.user_id = current_user.id
 
     if @daily_note.save
       redirect_to "/", :notice => "Daily note created successfully."

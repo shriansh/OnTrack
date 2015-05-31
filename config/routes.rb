@@ -3,8 +3,12 @@ Rails.application.routes.draw do
 
 
 
-  devise_for :users
+  devise_for :users, :controllers => { :registrations => "registrations" }
+
+
 root to: "goals#home"
+
+
 
 
   # Routes for the Daily_note resource:
@@ -58,10 +62,13 @@ root to: "goals#home"
   # CREATE
   get "/personal_boards/new", :controller => "personal_boards", :action => "new"
   post "/create_personal_board", :controller => "personal_boards", :action => "create"
+  get "/personal_boards/new_my_board", :controller => "personal_boards", :action => "new_my_board"
+
 
   # READ
   get "/personal_boards", :controller => "personal_boards", :action => "index"
   get "/my_board", :controller => "personal_boards", :action => "my_board"
+  get "/personal_boards/edit_my_board", :controller => "personal_boards", :action => "edit_my_board"
   get "/personal_boards/:id", :controller => "personal_boards", :action => "show"
 
   # UPDATE

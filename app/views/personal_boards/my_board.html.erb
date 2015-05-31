@@ -32,8 +32,8 @@
 
 
       <ul class="list-group">
-        <% @my_board_array.each do |member| %>
-        <li class="list-group-item"><%= member.to_s %></li>
+        <% @my_board_ids_array.each do |member_id| %>
+        <li class="list-group-item"><%= User.find(member_id).username %></li>
 <% end %>
       </ul>
 

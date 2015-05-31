@@ -20,7 +20,7 @@ end
   def home
     @new_goal = Goal.new
     @new_note =DailyNote.new
-    @notes = DailyNote.all
+    @notes = current_user.daily_notes
     @goals = current_user.goals
 
     @todays_goals = @goals.where(duedate: Date.today.to_s(:db))
@@ -71,6 +71,7 @@ end
     @goal.goaloneliner = params[:goaloneliner]
     @goal.complete = false
     @goal.duedate = Date.tomorrow.to_s(:db)
+    @goal.user_id = current_user.id
 
     if @goal.save
       redirect_to "/", :notice => "Goal created successfully."

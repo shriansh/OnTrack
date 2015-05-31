@@ -40,15 +40,21 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li><a href="/daily_notes">Daily Notes</a></li>
+<!--           <li><a href="/daily_notes">Daily Notes</a></li>
           <li><a href="/goals">Goals</a></li>
           <li><a href="/personal_boards">Personal Boards</a></li>
           <li><a href="/users">Users</a></li>
-          <li><a href="#">About</a></li>
+          <li><a href="#">About</a></li> -->
+
+
+          <li><a href="/my_board">My Board</a></li>
+          <li><a href="/goals">All Goals</a></li>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
+
           <% if current_user!= nil %>
+            <li><a href="/personal_boards/edit_my_board">Edit Board</a></li>
             <li><a href="/users/edit">Edit Profile</a></li>
             <li><a href="/users/sign_out" data-method="delete" rel="nofollow">Sign out</a></li>
           <% else %>

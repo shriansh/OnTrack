@@ -5,5 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :goals
+  has_many :daily_notes
+  belongs_to :personal_board
 
 end
