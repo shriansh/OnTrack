@@ -22,24 +22,115 @@
   </div>
 
 
+<!--   <div class="row">
+
+
+    <div class="col-sm-5">
+      <div class="panel panel-success">
+        <div class="panel-heading">Members</div>
+
+
+
+        <ul class="list-group">
+          <% @my_board_ids_array.each do |member_id| %>
+          <li class="list-group-item"><%= User.find(member_id).username %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div> -->
+
+
+  <% @my_board_ids_array.each do |member_id| %>
+
   <div class="row">
 
+    <div class="col-sm-12">
 
-  <div class="col-sm-5">
-    <div class="panel panel-success">
-      <div class="panel-heading">Members</div>
+      <!--   <h3> <%= User.find(member_id).username %>'s goals </h3> -->
 
-
-
-      <ul class="list-group">
-        <% @my_board_ids_array.each do |member_id| %>
-        <li class="list-group-item"><%= User.find(member_id).username %></li>
-<% end %>
-      </ul>
+    </div>
 
 
 
+    <div class="col-sm-1">
+
+    </div>
 
 
-    </body>
-    </html>
+
+    <div class="col-sm-5">
+
+      <div class="panel panel-success">
+        <div class="panel-heading"><h4><%= User.find(member_id).username.capitalize %>'s goals</h4></div>
+
+        <ul class="list-group">
+          <% @goals.each do |goal| %>
+
+
+
+
+
+          <% if goal.user_id.to_i == member_id.to_i %>
+
+
+              <% if  goal.complete != true %>
+
+
+                <% if goal.duedate!=Date.today and goal.duedate!=Date.tomorrow  %>
+
+                    <li class="list-group-item">
+                  (Due <%= goal.duedate %>) <font color="red"><h4><%= goal.goaloneliner %></h4></font>
+                   </li>
+
+                <% else %>
+                  <li class="list-group-item">
+                  (Due <%= goal.duedate %>) <h4><%= goal.goaloneliner %></h4>
+                   </li>
+
+              <% end %>
+
+              <% end %>
+
+
+          <% end %>
+
+          <% end %>
+
+
+        </ul></div>
+
+      </div>
+
+
+
+      <div class="col-sm-5">
+
+      </div>
+
+
+
+      <div class="col-sm-1">
+
+      </div>
+
+
+    </div>
+
+    <% end %>
+
+
+
+
+
+
+
+
+
+  </div>
+
+
+
+
+</body>
+</html>

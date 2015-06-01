@@ -7,6 +7,7 @@ class PersonalBoardsController < ApplicationController
     @my_board = PersonalBoard.where(user_id: current_user.id).first
     @my_board_array = PersonalBoard.where(user_id: current_user.id).first.members
     @my_board_ids_array = PersonalBoard.where(user_id: current_user.id).first.member_ids
+    @goals = Goal.all
   end
 
   def show
