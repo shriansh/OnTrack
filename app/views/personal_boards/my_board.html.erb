@@ -15,7 +15,7 @@
     <div class="col-sm-12">
       <div class="page-header">
         <h1>
-          Welcome <%= @my_board.user %>. This is your personal board
+          Welcome <%= @my_board.user.capitalize %>. This is your personal board
         </h1>
       </div>
     </div>
@@ -41,11 +41,30 @@
   </div> -->
 
 
+
+<div class="row">
+
+<div class="col-md-4">
+
+<h3>Here is a quick glance at how your board members are doing today.</h3>
+
+<h4><font color="red">Red</font> goals indicate goals past their due date. Push them to hit their goal by getting in touch with them. </h4>
+
+<h4>Goals with a <s>strike through</s> indicate goals they completed today.</h4>
+
+</div>
+
+
+
+
+
+<div class="col-md-8">
+
   <% @my_board_ids_array.each do |member_id| %>
 
   <div class="row">
 
-    <div class="col-sm-12">
+    <div class="col-sm-24">
 
       <!--   <h3> <%= User.find(member_id).username %>'s goals </h3> -->
 
@@ -59,7 +78,7 @@
 
 
 
-    <div class="col-sm-5">
+    <div class="col-sm-10">
 
       <div class="panel panel-success">
         <div class="panel-heading"><h4><%= User.find(member_id).username.capitalize %>'s goals</h4></div>
@@ -74,23 +93,38 @@
           <% if goal.user_id.to_i == member_id.to_i %>
 
 
-              <% if  goal.complete != true %>
+          <% if  goal.complete != true %>
 
 
-                <% if goal.duedate!=Date.today and goal.duedate!=Date.tomorrow  %>
+          <% if goal.duedate!=Date.today and goal.duedate!=Date.tomorrow  %>
 
-                    <li class="list-group-item">
-                  (Due <%= goal.duedate %>) <font color="red"><h4><%= goal.goaloneliner %></h4></font>
-                   </li>
+          <li class="list-group-item">
+            (Due <%= goal.duedate %>) <font color="red"><h4><%= goal.goaloneliner %></h4></font>
+          </li>
 
-                <% else %>
-                  <li class="list-group-item">
-                  (Due <%= goal.duedate %>) <h4><%= goal.goaloneliner %></h4>
-                   </li>
+          <% else %>
+          <li class="list-group-item">
+            (Due <%= goal.duedate %>) <h4><%= goal.goaloneliner %></h4>
+          </li>
 
-              <% end %>
+          <% end %>
 
-              <% end %>
+          <% end %>
+
+
+
+          <% if  goal.complete == true %>
+
+          <% starting_time = DateTime.now.in_time_zone('America/Chicago').beginning_of_day %>
+          <% ending_time = DateTime.now.in_time_zone('America/Chicago').end_of_day %>
+
+          <% if (starting_time..ending_time).cover?(goal.updated_at) %>
+          <li class="list-group-item">
+            (Due <%= goal.duedate %>) <s><h4><%= goal.goaloneliner %></h4></s>
+          </li>
+          <% end %>
+
+          <% end %>
 
 
           <% end %>
@@ -104,15 +138,10 @@
 
 
 
-      <div class="col-sm-5">
+      <div class="col-sm-6 ">
 
       </div>
 
-
-
-      <div class="col-sm-1">
-
-      </div>
 
 
     </div>
@@ -120,13 +149,13 @@
     <% end %>
 
 
+</div>
 
 
 
 
 
-
-
+</div>
   </div>
 
 

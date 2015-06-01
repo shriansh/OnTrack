@@ -46,7 +46,7 @@ class PersonalBoardsController < ApplicationController
 
 
     if @personal_board.save
-      redirect_to "/personal_boards", :notice => "Personal board created successfully."
+      redirect_to "/my_board", :notice => "Personal board created successfully."
     else
       render 'new'
     end
@@ -83,7 +83,7 @@ class PersonalBoardsController < ApplicationController
     @personal_board.boardmember1 = User.find(params[:boardmember1_id]).username
 
     if @personal_board.save
-      redirect_to "/personal_boards", :notice => "Personal board updated successfully."
+      redirect_to "/my_board", :notice => "Personal board updated successfully."
     else
       render 'edit'
     end

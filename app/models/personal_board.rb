@@ -11,7 +11,7 @@ class PersonalBoard < ActiveRecord::Base
     member_id_array.push(boardmember3_id.to_s)
     member_id_array.push(boardmember4_id.to_s)
     member_id_array.push(boardmember5_id.to_s)
-
+    member_id_array.push(user_id.to_s)
     member_id_array.reject!{|c| c.empty?}
 
     return member_id_array
