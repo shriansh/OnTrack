@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Personal Board</title>
+</head>
+
+
+<body>
+
+
+  <div class="container">
+
+
+   <div class="row">
+    <div class="col-sm-12">
+      <div class="page-header">
+        <h1>
+          Welcome <%= @my_board.user.capitalize %>. This is your personal board
+        </h1>
+      </div>
+    </div>
+  </div>
+
+
+<!--   <div class="row">
+
+
+    <div class="col-sm-5">
+      <div class="panel panel-success">
+        <div class="panel-heading">Members</div>
+
+
+
+        <ul class="list-group">
+          <% @my_board_ids_array.each do |member_id| %>
+          <li class="list-group-item"><%= User.find(member_id).username %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div> -->
+
+
+
+  <div class="row">
+
+    <div class="col-md-4">
+
+      <h3>Here is a quick glance at how your board members are doing today.</h3>
+
+      <h4><font color="red">Red</font> goals indicate goals past their due date. Push them to hit their goal by getting in touch with them. </h4>
+
+      <h4>Goals with a <s>strike through</s> indicate goals they completed today.</h4>
+
+    </div>
+
+
+
+
+
+    <div class="col-md-8">
+
+      <% @my_board_ids_array.each do |member_id| %>
+
+      <div class="row">
+
+        <div class="col-sm-24">
+
+          <!--   <h3> <%= User.find(member_id).username %>'s goals </h3> -->
+
+        </div>
+
+
+
+        <div class="col-sm-1">
+
+        </div>
+
+
+
+        <div class="col-sm-10">
+
+          <div class="panel panel-success">
+            <div class="panel-heading"><h4><%= User.find(member_id).username.capitalize %>'s goals</h4></div>
+
+            <ul class="list-group">
+
+
+
+             <% @notes.each do |note|  %>
+
+             <% if note.user_id.to_i == member_id.to_i  %>
+             <% starting_time = DateTime.now.in_time_zone('America/Chicago').beginning_of_day %>
+             <% ending_time = DateTime.now.in_time_zone('America/Chicago').end_of_day %>
+
+             <% if (starting_time..ending_time).cover?(note.updated_at) %>
+
+             <li class="list-group-item"> <%= note.note.to_s %>  </li>
+             <% end %>
+
+             <% end %>
+
+             <% end %>
+
+
+
+
+
+             <% @goals.each do |goal| %>
+
+
+
+
+
+             <% if goal.user_id.to_i == member_id.to_i %>
+
+
+             <% if  goal.complete != true %>
+
+
+             <% if goal.duedate!=Date.today and goal.duedate!=Date.tomorrow  %>
+
+             <li class="list-group-item">
+              (Due <%= goal.duedate %>) <font color="red"><%= goal.goaloneliner %></font>
+            </li>
+
+            <% else %>
+            <li class="list-group-item">
+              (Due <%= goal.duedate %>) <%= goal.goaloneliner %>
+            </li>
+
+            <% end %>
+
+            <% end %>
+
+
+
+            <% if  goal.complete == true %>
+
+            <% starting_time = DateTime.now.in_time_zone('America/Chicago').beginning_of_day %>
+            <% ending_time = DateTime.now.in_time_zone('America/Chicago').end_of_day %>
+
+            <% if (starting_time..ending_time).cover?(goal.updated_at) %>
+            <li class="list-group-item">
+              (Due <%= goal.duedate %>) <s><%= goal.goaloneliner %></s>
+            </li>
+            <% end %>
+
+            <% end %>
+
+
+            <% end %>
+
+            <% end %>
+
+
+          </ul></div>
+
+        </div>
+
+
+
+        <div class="col-sm-6 ">
+
+        </div>
+
+
+
+      </div>
+
+      <% end %>
+
+
+    </div>
+
+
+
+
+
+  </div>
+</div>
+
+
+
+
+</body>
+</html>

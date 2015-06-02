@@ -8,6 +8,7 @@ class PersonalBoardsController < ApplicationController
     @my_board_array = PersonalBoard.where(user_id: current_user.id).first.members
     @my_board_ids_array = PersonalBoard.where(user_id: current_user.id).first.member_ids
     @goals = Goal.all
+    @notes = DailyNote.all
   end
 
   def show
@@ -23,7 +24,18 @@ class PersonalBoardsController < ApplicationController
     @users = User.all
   end
 
+  def send_summary_email
 
+    UserMailer.daily_summary_email(current_user).deliver_now
+    @my_board = PersonalBoard.where(user_id: current_user.id).first
+    @my_board_array = PersonalBoard.where(user_id: current_user.id).first.members
+    @my_board_ids_array = PersonalBoard.where(user_id: current_user.id).first.member_ids
+    @goals = Goal.all
+    @notes = DailyNote.all
+    redirect_to "/my_board", :notice => "Email sent"
+
+
+  end
 
   def create
     @personal_board = PersonalBoard.new

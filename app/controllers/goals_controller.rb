@@ -26,6 +26,7 @@ end
     @todays_goals = @goals.where(duedate: Date.today.to_s(:db))
     @tomorrows_goals = @goals.where(duedate: Date.tomorrow.to_s(:db))
     @todays_and_past_goals = @goals.where.not(duedate: Date.tomorrow.to_s(:db))
+    @notes = DailyNote.all
 
     if @goals == nil
       render 'new_home'

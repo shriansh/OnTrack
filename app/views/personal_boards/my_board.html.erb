@@ -52,6 +52,8 @@
 
 <h4>Goals with a <s>strike through</s> indicate goals they completed today.</h4>
 
+<a href="/send_summary_email"> Email yourself this summary instead </a>
+
 </div>
 
 
@@ -84,6 +86,25 @@
         <div class="panel-heading"><h4><%= User.find(member_id).username.capitalize %>'s goals</h4></div>
 
         <ul class="list-group">
+
+
+          <% @notes.each do |note|  %>
+
+            <% if note.user_id.to_i == member_id.to_i  %>
+            <% starting_time = DateTime.now.in_time_zone('America/Chicago').beginning_of_day %>
+            <% ending_time = DateTime.now.in_time_zone('America/Chicago').end_of_day %>
+
+            <% if (starting_time..ending_time).cover?(note.updated_at) %>
+
+                    <li class="list-group-item"> <%= note.note.to_s %>  </li>
+            <% end %>
+
+          <% end %>
+
+          <% end %>
+
+
+
           <% @goals.each do |goal| %>
 
 

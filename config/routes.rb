@@ -70,6 +70,7 @@ root to: "goals#home"
   get "/my_board", :controller => "personal_boards", :action => "my_board"
   get "/personal_boards/edit_my_board", :controller => "personal_boards", :action => "edit_my_board"
   get "/personal_boards/:id", :controller => "personal_boards", :action => "show"
+  get "/send_summary_email", :controller => "personal_boards", :action => "send_summary_email"
 
   # UPDATE
   get "/personal_boards/:id/edit", :controller => "personal_boards", :action => "edit"
