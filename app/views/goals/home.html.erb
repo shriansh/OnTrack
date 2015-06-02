@@ -10,7 +10,7 @@
         <div class="col-sm-12">
           <div class="page-header">
             <h1>
-              Welcome <%= current_user.username %>
+              Welcome <%= current_user.username.capitalize %>
               <a href="/goals/new" class="btn btn-success">Add a new goal</a>
             </h1>
           </div>
@@ -90,7 +90,8 @@
   </div>
 
   <a href="" class="btn btn-xs btn-default" rel="nofollow">
-    Mark Completed</a>
+    Mark Completed
+    </a>
     <font color="green"><s><%= goal.goaloneliner %></s></font>
 
     <% end %>
