@@ -75,7 +75,7 @@
 
 
     <div class="col-sm-4">
-<h4>Is <%= User.find(member_id).username %> behind on a lot of goals? <a href="/send_nudge_email/<%= member_id %>">Send a Nudge! </a> </h4>
+<h4>Is <%= User.find(member_id).username.capitalize %> behind on a lot of goals? <a href="/send_nudge_email/<%= member_id %>">Send a Nudge! </a> </h4>
     </div>
 
 

@@ -37,8 +37,8 @@ class UserMailer < ApplicationMailer
     @notes = DailyNote.all
     @user = @recipient
     @url  = 'http://ontrack.herokuapp.com'
-    sub = @recipient.first_name.to_s.capitalize + ", " + @sender.first_name.to_s.capitalize + " sent you a nudge!"
-    mail(to: @user.email, subject: sub)
+    @sub = @recipient.first_name.to_s.capitalize + ", " + @sender.first_name.to_s.capitalize + " sent you a nudge!"
+    mail(to: @user.email, subject: @sub)
 
   end
 
