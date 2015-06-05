@@ -16,7 +16,9 @@ class UserMailer < ApplicationMailer
     @notes = DailyNote.all
     @user = user
     @url  = 'http://ontrack.herokuapp.com'
-    mail(to: @user.email, subject: sub)
+    @subject = "hello"
+    @subject = @user.first_name.capitalize.to_s + ", your personal board summary for "+Date.today.to_s
+    mail(to: @user.email, subject: @subject)
   end
 
 
