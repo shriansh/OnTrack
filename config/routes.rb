@@ -71,6 +71,7 @@ root to: "goals#home"
   get "/personal_boards/edit_my_board", :controller => "personal_boards", :action => "edit_my_board"
   get "/personal_boards/:id", :controller => "personal_boards", :action => "show"
   get "/send_summary_email", :controller => "personal_boards", :action => "send_summary_email"
+  get "send_nudge_email/:id", :controller=> "personal_boards", :action => "send_nudge_email"
 
   # UPDATE
   get "/personal_boards/:id/edit", :controller => "personal_boards", :action => "edit"

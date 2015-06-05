@@ -74,13 +74,13 @@
 
 
 
-    <div class="col-sm-1">
-
+    <div class="col-sm-4">
+<h4>Is <%= User.find(member_id).username %> behind on a lot of goals? <a href="/send_nudge_email/<%= member_id %>">Send a Nudge! </a> </h4>
     </div>
 
 
 
-    <div class="col-sm-10">
+    <div class="col-sm-8">
 
       <div class="panel panel-success">
         <div class="panel-heading"><h4><%= User.find(member_id).username.capitalize %>'s goals</h4></div>

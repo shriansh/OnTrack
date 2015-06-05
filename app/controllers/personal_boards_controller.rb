@@ -1,4 +1,8 @@
 class PersonalBoardsController < ApplicationController
+
+  skip_before_filter :verify_authenticity_token
+
+
   def index
     @personal_boards = PersonalBoard.all
   end
@@ -25,17 +29,35 @@ class PersonalBoardsController < ApplicationController
   end
 
   def send_summary_email
-
-    UserMailer.daily_summary_email(current_user).deliver_now
-    @my_board = PersonalBoard.where(user_id: current_user.id).first
-    @my_board_array = PersonalBoard.where(user_id: current_user.id).first.members
-    @my_board_ids_array = PersonalBoard.where(user_id: current_user.id).first.member_ids
+    @user = current_user
+    UserMailer.daily_summary_email(@user).deliver_now
+    @my_board = PersonalBoard.where(user_id: @user.id).first
+    @my_board_array = PersonalBoard.where(user_id: @user.id).first.members
+    @my_board_ids_array = PersonalBoard.where(user_id: @user.id).first.member_ids
     @goals = Goal.all
     @notes = DailyNote.all
     redirect_to "/my_board", :notice => "Email sent"
 
 
   end
+
+
+def send_nudge_email
+
+    @recipient = User.find(params[:id])
+    @sender = current_user
+
+    @email_details = [@recipient, @sender]
+
+    UserMailer.nudge_email(@email_details).deliver_now
+    @my_board = PersonalBoard.where(user_id: current_user.id).first
+    @my_board_array = PersonalBoard.where(user_id: current_user.id).first.members
+    @my_board_ids_array = PersonalBoard.where(user_id: current_user.id).first.member_ids
+    @goals = Goal.all
+    @notes = DailyNote.all
+    redirect_to "/my_board", :notice => "Nudge sent"
+end
+
 
   def create
     @personal_board = PersonalBoard.new

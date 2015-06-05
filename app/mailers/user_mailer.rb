@@ -8,16 +8,36 @@ class UserMailer < ApplicationMailer
     mail(to: @user.email, subject: 'Welcome to My Awesome Site')
   end
 
-  def daily_summary_email(current_user)
-    @my_board = PersonalBoard.where(user_id: current_user.id).first
-    @my_board_array = PersonalBoard.where(user_id: current_user.id).first.members
-    @my_board_ids_array = PersonalBoard.where(user_id: current_user.id).first.member_ids
+  def daily_summary_email(user)
+    @my_board = PersonalBoard.where(user_id: user.id).first
+    @my_board_array = PersonalBoard.where(user_id: user.id).first.members
+    @my_board_ids_array = PersonalBoard.where(user_id: user.id).first.member_ids
     @goals = Goal.all
     @notes = DailyNote.all
-    @user = current_user
+    @user = user
     @url  = 'http://ontrack.herokuapp.com'
-    sub = current_user.first_name.capitalize.to_s + ", your personal board summary for "+Date.today.to_s
     mail(to: @user.email, subject: sub)
+  end
+
+
+
+
+
+
+  def nudge_email(email_details)
+    @recipient = email_details[0]
+    @sender = email_details[1]
+
+    @my_board = PersonalBoard.where(user_id: @sender.id).first
+    @my_board_array = PersonalBoard.where(user_id: @sender.id).first.members
+    @my_board_ids_array = PersonalBoard.where(user_id: @sender.id).first.member_ids
+    @goals = Goal.all
+    @notes = DailyNote.all
+    @user = @recipient
+    @url  = 'http://ontrack.herokuapp.com'
+    sub = @recipient.first_name.to_s.capitalize + ", " + @sender.first_name.to_s.capitalize + " sent you a nudge!"
+    mail(to: @user.email, subject: sub)
+
   end
 
 
