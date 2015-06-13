@@ -1,5 +1,7 @@
 class UserMailer < ApplicationMailer
 
+  include Resque::Mailer
+
    default from: 'ontrack@shriansh.com'
 
   def welcome_email(user)
