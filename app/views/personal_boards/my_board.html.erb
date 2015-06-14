@@ -50,7 +50,7 @@
 
 <h4><font color="red">Red</font> goals indicate goals past their due date. Push them to hit their goal by getting in touch with them. </h4>
 
-<h4>Goals with a <s>strike through</s> indicate goals they completed today.</h4>
+<h4>Goals with a <font color="green"><s>strikethrough</s></font> indicate goals they completed today.</h4>
 
 <a href="/send_summary_email"> Email yourself this summary instead </a>
 
@@ -76,6 +76,24 @@
 
     <div class="col-sm-4">
 <h4>Is <%= User.find(member_id).username.capitalize %> behind on a lot of goals? <a href="/send_nudge_email/<%= member_id %>">Send a Nudge! </a> </h4>
+
+
+          <% @notes.each do |note|  %>
+
+            <% if note.user_id.to_i == member_id.to_i  %>
+            <% starting_time = DateTime.now.in_time_zone('America/Chicago').beginning_of_day %>
+            <% ending_time = DateTime.now.in_time_zone('America/Chicago').end_of_day %>
+
+            <% if (starting_time..ending_time).cover?(note.updated_at) %>
+
+                    <li class="list-group-item"> "<%= note.note.to_s %>"  </li>
+            <% end %>
+
+          <% end %>
+
+          <% end %>
+
+
     </div>
 
 
@@ -87,21 +105,6 @@
 
         <ul class="list-group">
 
-
-          <% @notes.each do |note|  %>
-
-            <% if note.user_id.to_i == member_id.to_i  %>
-            <% starting_time = DateTime.now.in_time_zone('America/Chicago').beginning_of_day %>
-            <% ending_time = DateTime.now.in_time_zone('America/Chicago').end_of_day %>
-
-            <% if (starting_time..ending_time).cover?(note.updated_at) %>
-
-                    <li class="list-group-item"> <%= note.note.to_s %>  </li>
-            <% end %>
-
-          <% end %>
-
-          <% end %>
 
 
 
@@ -141,7 +144,7 @@
 
           <% if (starting_time..ending_time).cover?(goal.updated_at) %>
           <li class="list-group-item">
-            (Due <%= goal.duedate %>) <s><h4><%= goal.goaloneliner %></h4></s>
+            (Due <%= goal.duedate %>) <font color="green"><s><h4><%= goal.goaloneliner %></h4></s></font>
           </li>
           <% end %>
 

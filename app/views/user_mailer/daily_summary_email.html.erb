@@ -83,24 +83,28 @@
           <div class="panel panel-success">
             <div class="panel-heading"><h4><%= User.find(member_id).username.capitalize %>'s goals</h4></div>
 
+
+
+            <% @notes.each do |note|  %>
+
+            <% if note.user_id.to_i == member_id.to_i  %>
+            <% starting_time = DateTime.now.in_time_zone('America/Chicago').beginning_of_day %>
+            <% ending_time = DateTime.now.in_time_zone('America/Chicago').end_of_day %>
+
+            <% if (starting_time..ending_time).cover?(note.updated_at) %>
+
+            <font color="blue"> "<%= note.note.to_s %>"</font>
+            <% end %>
+
+            <% end %>
+
+            <% end %>
+
+
+
             <ul class="list-group">
 
 
-
-             <% @notes.each do |note|  %>
-
-             <% if note.user_id.to_i == member_id.to_i  %>
-             <% starting_time = DateTime.now.in_time_zone('America/Chicago').beginning_of_day %>
-             <% ending_time = DateTime.now.in_time_zone('America/Chicago').end_of_day %>
-
-             <% if (starting_time..ending_time).cover?(note.updated_at) %>
-
-             <li class="list-group-item"> <%= note.note.to_s %>  </li>
-             <% end %>
-
-             <% end %>
-
-             <% end %>
 
 
 
@@ -142,7 +146,7 @@
 
             <% if (starting_time..ending_time).cover?(goal.updated_at) %>
             <li class="list-group-item">
-              (Due <%= goal.duedate %>) <s><%= goal.goaloneliner %></s>
+              (Due <%= goal.duedate %>) <font color="green"><s><%= goal.goaloneliner %></s></font>
             </li>
             <% end %>
 
