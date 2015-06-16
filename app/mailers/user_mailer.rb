@@ -44,6 +44,21 @@ class UserMailer < ApplicationMailer
 
   end
 
+ def hi5_email(email_details)
+    @recipient = email_details[0]
+    @sender = email_details[1]
+
+    @my_board = PersonalBoard.where(user_id: @sender.id).first
+    @my_board_array = PersonalBoard.where(user_id: @sender.id).first.members
+    @my_board_ids_array = PersonalBoard.where(user_id: @sender.id).first.member_ids
+    @goals = Goal.all
+    @notes = DailyNote.all
+    @user = @recipient
+    @url  = 'http://ontrack.herokuapp.com'
+    @sub = @recipient.first_name.to_s.capitalize + ", " + @sender.first_name.to_s.capitalize + " sends you a high five!!"
+    mail(to: @user.email, subject: @sub)
+
+  end
 
 
 end

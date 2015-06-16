@@ -59,6 +59,25 @@ def send_nudge_email
 end
 
 
+
+
+def send_hi5
+
+    @recipient = User.find(params[:id])
+    @sender = current_user
+
+    @email_details = [@recipient, @sender]
+
+    UserMailer.hi5_email(@email_details).deliver!
+    @my_board = PersonalBoard.where(user_id: current_user.id).first
+    @my_board_array = PersonalBoard.where(user_id: current_user.id).first.members
+    @my_board_ids_array = PersonalBoard.where(user_id: current_user.id).first.member_ids
+    @goals = Goal.all
+    @notes = DailyNote.all
+    redirect_to "/my_board", :notice => "High Five sent"
+end
+
+
   def create
     @personal_board = PersonalBoard.new
     @personal_board.user = current_user.username

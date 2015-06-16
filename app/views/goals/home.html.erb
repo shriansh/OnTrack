@@ -11,10 +11,14 @@
           <div class="page-header">
             <h1>
               Welcome <%= current_user.username.capitalize %>
-              <a href="/goals/new" class="btn btn-success">Add a new goal</a>
+              <a href="/goals/new" class="btn btn-success">Add custom goal</a>
+              <a href="/my_board" class="btn btn-primary">Check Board progress</a>
             </h1>
           </div>
         </div>
+
+
+
 
 
 
@@ -45,6 +49,7 @@
         <div class="row">
           <div class="col-sm-12"></div>
         </div>
+
 
 
         <div class="row"><div class="col-sm-1"></div>
@@ -199,13 +204,13 @@
  <div class="col-sm-1"></div>
  <div class="col-sm-10">
 
-  <h2>Notes for tonight's summary email</h2>
+  <h2>Add a note for tonight's summary email</h2>
 
   <form action="/add_note" method="post" name="add_note">
 
     <!-- Hidden input for authenticity token to protect from forgery -->
     <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
-    <textarea style="width:100%" id="note" name="note" placeholder="Add a note for today here" value="@new_note.note">
+    <textarea style="width:100%" id="note" name="note" placeholder="Add a note for today here; it will be included in the summary email sent every night" value="@new_note.note">
 
 
 

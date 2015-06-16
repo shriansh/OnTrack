@@ -75,7 +75,10 @@
 
 
     <div class="col-sm-4">
-<h4>Is <%= User.find(member_id).username.capitalize %> behind on a lot of goals? <a href="/send_nudge_email/<%= member_id %>">Send a Nudge! </a> </h4>
+<h4>Is <%= User.find(member_id).username.capitalize %> <font color="red">behind</font> on a lot of goals? <a href="/send_nudge_email/<%= member_id %>">Send a Nudge! </a> </h4>
+
+
+<h4>Is <%= User.find(member_id).username.capitalize %> doing <font color="green">really well</font>? <a href="/send_hi5/<%= member_id %>">Send a HIGH-5! </a> </h4>
 
 
           <% @notes.each do |note|  %>
