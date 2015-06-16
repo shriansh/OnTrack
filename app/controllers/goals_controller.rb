@@ -24,8 +24,8 @@ end
     @goals = current_user.goals
 
     @todays_goals = @goals.where(duedate: Date.today.to_s(:db))
-    @tomorrows_goals = @goals.where(duedate: Date.tomorrow.to_s(:db))
-    @todays_and_past_goals = @goals.where.not(duedate: Date.tomorrow.to_s(:db))
+    @tomorrows_goals = @goals.where(duedate: (Date.today+1).to_s(:db))
+    @todays_and_past_goals = @goals.where.not(duedate: (Date.today+1).to_s(:db))
     @notes = DailyNote.all
 
     if @goals == nil
@@ -71,7 +71,7 @@ end
     @goal.stretch = false
     @goal.goaloneliner = params[:goaloneliner]
     @goal.complete = false
-    @goal.duedate = Date.tomorrow.to_s(:db)
+    @goal.duedate = (Date.today+1).to_s(:db)
     @goal.user_id = current_user.id
 
     if @goal.save

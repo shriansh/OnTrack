@@ -123,7 +123,7 @@
           <% if  goal.complete != true %>
 
 
-          <% if goal.duedate!=Date.today and goal.duedate!=Date.tomorrow  %>
+          <% if goal.duedate!=Date.today and goal.duedate!=Date.today+1  %>
 
           <li class="list-group-item">
             (Due <%= goal.duedate %>) <font color="red"><h4><%= goal.goaloneliner %></h4></font>
